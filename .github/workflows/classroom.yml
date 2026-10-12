@@ -1,6 +1,6 @@
 name: Autograding Tests
 on:
-  - push
+  - workflow_dispatch
   - repository_dispatch
 permissions:
   checks: write
@@ -48,7 +48,7 @@ jobs:
         test-name: "Constructor & is_empty"
         command: cd build && ./run_tests --gtest_filter=BSTTest.DefaultConstructorCreatesEmptyTree
         timeout: 10
-        max-score: 10
+        max-score: 7
 
     - name: "Destructor: Frees Memory (5 pts)"
       id: destructor
@@ -57,7 +57,7 @@ jobs:
         test-name: "Destructor: Frees Memory"
         command: cd build && ./run_tests --gtest_filter=BSTTest.DestructorFreesAllMemory
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Insert (15 pts)
@@ -70,7 +70,7 @@ jobs:
         test-name: "Insert: Single Node"
         command: cd build && ./run_tests --gtest_filter=BSTTest.InsertSingleNode
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Insert: Multiple Nodes (5 pts)"
       id: insert-multiple
@@ -79,7 +79,7 @@ jobs:
         test-name: "Insert: Multiple Nodes"
         command: cd build && ./run_tests --gtest_filter=BSTTest.InsertMultipleNodes
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Insert: Duplicates Ignored (5 pts)"
       id: insert-duplicates
@@ -88,7 +88,7 @@ jobs:
         test-name: "Insert: Duplicates Ignored"
         command: cd build && ./run_tests --gtest_filter=BSTTest.InsertDuplicateIgnored
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Search (10 pts)
@@ -101,7 +101,7 @@ jobs:
         test-name: "Search: Found"
         command: cd build && ./run_tests --gtest_filter=BSTTest.SearchFindsRoot:BSTTest.SearchFindsLeaf
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Search: Not Found (5 pts)"
       id: search-not-found
@@ -110,7 +110,7 @@ jobs:
         test-name: "Search: Not Found"
         command: cd build && ./run_tests --gtest_filter=BSTTest.SearchEmptyTreeReturnsFalse:BSTTest.SearchMissingValueReturnsFalse
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Traversals (20 pts)
@@ -123,7 +123,7 @@ jobs:
         test-name: "Inorder Traversal"
         command: cd build && ./run_tests --gtest_filter=BSTTest.InorderSorted
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Preorder Traversal (5 pts)"
       id: preorder
@@ -132,7 +132,7 @@ jobs:
         test-name: "Preorder Traversal"
         command: cd build && ./run_tests --gtest_filter=BSTTest.PreorderRootFirst
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Postorder Traversal (5 pts)"
       id: postorder
@@ -141,7 +141,7 @@ jobs:
         test-name: "Postorder Traversal"
         command: cd build && ./run_tests --gtest_filter=BSTTest.PostorderRootLast
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Traversals: Edge Cases (5 pts)"
       id: traversals-edge
@@ -150,7 +150,7 @@ jobs:
         test-name: "Traversals: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=BSTTest.TraversalsEmptyTree:BSTTest.TraversalSingleNode
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Height (10 pts)
@@ -163,7 +163,7 @@ jobs:
         test-name: "Height: Empty & Single"
         command: cd build && ./run_tests --gtest_filter=BSTTest.HeightEmptyTree:BSTTest.HeightSingleNode
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Height: Balanced & Degenerate (5 pts)"
       id: height-advanced
@@ -172,7 +172,7 @@ jobs:
         test-name: "Height: Balanced & Degenerate"
         command: cd build && ./run_tests --gtest_filter=BSTTest.HeightBalancedTree:BSTTest.HeightDegenerateTree
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Size (10 pts)
@@ -185,7 +185,7 @@ jobs:
         test-name: "Size: Empty & Single"
         command: cd build && ./run_tests --gtest_filter=BSTTest.SizeEmptyTree:BSTTest.SizeSingleNode
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Size: Multiple & Duplicates (5 pts)"
       id: size-advanced
@@ -194,7 +194,7 @@ jobs:
         test-name: "Size: Multiple & Duplicates"
         command: cd build && ./run_tests --gtest_filter=BSTTest.SizeSevenNodes:BSTTest.SizeAfterDuplicateInsert
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # is_balanced (10 pts)
@@ -207,7 +207,7 @@ jobs:
         test-name: "Is Balanced: Balanced Trees"
         command: cd build && ./run_tests --gtest_filter=BSTTest.IsBalancedEmptyTree:BSTTest.IsBalancedSingleNode:BSTTest.IsBalancedSevenNodeTree
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Is Balanced: Unbalanced Tree (5 pts)"
       id: balanced-false
@@ -216,7 +216,7 @@ jobs:
         test-name: "Is Balanced: Unbalanced Tree"
         command: cd build && ./run_tests --gtest_filter=BSTTest.IsBalancedDegenerateReturnsFalse
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Clear (10 pts)
@@ -229,7 +229,7 @@ jobs:
         test-name: "Clear: Empty & Reset"
         command: cd build && ./run_tests --gtest_filter=BSTTest.ClearEmptyTreeIsNoOp:BSTTest.ClearResetsTree
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Clear: Reinsertion (5 pts)"
       id: clear-reinsertion
@@ -238,7 +238,7 @@ jobs:
         test-name: "Clear: Reinsertion"
         command: cd build && ./run_tests --gtest_filter=BSTTest.ClearAllowsReinsertion
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     # ===================================================================
     # Remove (30 pts)
@@ -251,7 +251,7 @@ jobs:
         test-name: "Remove: Leaf Node"
         command: cd build && ./run_tests --gtest_filter=BSTTest.RemoveLeafNode
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Remove: One Child (5 pts)"
       id: remove-one-child
@@ -260,7 +260,7 @@ jobs:
         test-name: "Remove: One Child"
         command: cd build && ./run_tests --gtest_filter=BSTTest.RemoveNodeWithOneChild
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Remove: Two Children (5 pts)"
       id: remove-two-children
@@ -269,7 +269,7 @@ jobs:
         test-name: "Remove: Two Children"
         command: cd build && ./run_tests --gtest_filter=BSTTest.RemoveNodeWithTwoChildren
         timeout: 10
-        max-score: 5
+        max-score: 4
 
     - name: "Remove: Root (5 pts)"
       id: remove-root
@@ -278,7 +278,7 @@ jobs:
         test-name: "Remove: Root"
         command: cd build && ./run_tests --gtest_filter=BSTTest.RemoveRoot
         timeout: 10
-        max-score: 5
+        max-score: 3
 
     - name: "Remove: Edge Cases (5 pts)"
       id: remove-edge
@@ -287,7 +287,7 @@ jobs:
         test-name: "Remove: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=BSTTest.RemoveFromEmptyTreeIsNoOp:BSTTest.RemoveNotFoundIsNoOp:BSTTest.RemoveOnlyNodeLeavesEmptyTree
         timeout: 10
-        max-score: 5
+        max-score: 3
 
     - name: "Remove: Multiple in Sequence (5 pts)"
       id: remove-sequence
@@ -296,7 +296,7 @@ jobs:
         test-name: "Remove: Multiple in Sequence"
         command: cd build && ./run_tests --gtest_filter=BSTTest.MultipleRemovesInSequence
         timeout: 10
-        max-score: 5
+        max-score: 3
 
     # ===================================================================
     # Report results
